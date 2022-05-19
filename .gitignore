@@ -4,3 +4,4 @@
 !LICENSE.md
 !Dockerfile
 !.github/
+!.dockerignore
