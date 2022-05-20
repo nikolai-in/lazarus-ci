@@ -9,10 +9,7 @@ ENV FPC_VERSION="3.2.2" \
 RUN dnf install  --setopt=install_weak_deps=False --best -y rpm-build
 
 RUN cd /tmp && \
-    curl https://downloads.sourceforge.net/projects/lazarus/files/Lazarus%20Linux%20x86_64%20RPM/Lazarus%20${LAZARUS_VERSION}/fpc-${FPC_VERSION}-1.x86_64.rpm -OL &\
-    curl https://sourceforge.net/projects/lazarus/files/Lazarus%20Linux%20x86_64%20RPM/Lazarus%20${LAZARUS_VERSION}/fpc-src-${FPC_VERSION}-1.x86_64.rpm -OL &\
-    curl https://sourceforge.net/projects/lazarus/files/Lazarus%20Linux%20x86_64%20RPM/Lazarus%20${LAZARUS_VERSION}/lazarus-${LAZARUS_VERSION}-0.x86_64.rpm -OL & \
-    wait && \
+    curl -LZ --remote-name-all ftp://freepascal.dfmk.hu/pub/lazarus/releases/Lazarus%20Linux%20x86_64%20RPM/Lazarus%20${LAZARUS_VERSION}/{fpc-${FPC_VERSION}-1.x86_64.rpm,fpc-src-${FPC_VERSION}-1.x86_64.rpm,lazarus-${LAZARUS_VERSION}-0.x86_64.rpm} && \
     dnf localinstall --setopt=install_weak_deps=False --best -y *.rpm && \ 
     rm *.rpm
 
